@@ -456,10 +456,13 @@ header.scrolled {
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease-in-out;
+    transform: translateY(0);
 }
 #page-3 .p-box:hover,
 #page-3 .p-box-1:hover {
     background-color: rgba(26, 23, 25, 1);
+    transform: translateY(-20px);
+    position: relative
 }
 #page-3 .col-3 {
     display: flex;
@@ -488,6 +491,119 @@ header.scrolled {
     display: flex;
     justify-content: center;
     padding-top: 10px;
+}
+#page-experience {
+    color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+#page-experience > .name {
+    font-size: 42px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+#page-experience .col-1 {
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 35px;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease-in-out;
+}
+
+#page-experience .col-1:hover {
+    transform: translateY(-4px);
+    background-color: rgba(26, 23, 25, 1);
+}
+
+#page-experience .exp-date {
+    color: #31c5f4;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+#page-experience .exp-content h3 {
+    margin: 0 0 8px;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+#page-experience .exp-content h4 {
+    margin: 0 0 22px;
+    color: #31c5f4;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+#page-experience .exp-content ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+#page-experience .exp-content li {
+    padding-left: 5px;
+    margin-bottom: 12px;
+    color: #c9c9d1;
+    font-size: 15px;
+    line-height: 1.8;
+    text-align: left;
+}
+#education-page .p-box {
+    padding: 25px 50px 25px 50px;
+    background-color: rgba(26, 23, 25, 0.2);
+    border: 1px solid rgba(244, 244, 244, .15);
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
+#education-page .p-box:hover {
+    transform: translateY(-4px);
+    background-color: rgba(26, 23, 25, 1);
+}
+#achievements-page .p-box {
+    width: fit-content;
+    padding: 46px 43px;
+    font-size: 20px;
+    background: rgba(255,255,255, .1);
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+    transform: translateY(0);
+}
+#achievements-page .p-box:hover {
+    background-color: rgba(26, 23, 25, 1);
+    position: relative
+}
+#achievements-page .col-info {
+    display: flex;
+    justify-content: center;
+}
+#achievements-page .p-box img {
+    width: 679px !important;
+    height: 450px !important;
+    object-fit: cover;
+}
+#achievements-page img {
+    transition: all ease-in-out 0.3s;
+}
+#achievements-page img:hover {
+    transform: scale(1.1);
+}
+#achievements-page .col-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
 }
 #page-4 .col-2 {
     position: relative;
@@ -595,8 +711,13 @@ h2 {
     overflow: hidden;
     user-select: none;
 }
-
-
+.wrap-2 {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.pad-top {
+    padding-top: 20px;
+}
 
 /*--------------------------------------------------------------
  ## Responsive CSS
@@ -641,6 +762,23 @@ h2 {
    
     #page-4 img {
         width: 500px !important;
+    }
+    #achievements-page > .col-3 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px;
+    }
+    #achievements-page .cols-1 img {
+        width: 100% !important;
+        max-width: 100%;
+        height: 260px;
+        object-fit: cover;
+    }
+    #achievements-page .cols-2 img {
+        width: 100% !important;
+        max-width: 100%;
+        height: 260px;
+        object-fit: contain;
     }
 }
 
@@ -716,6 +854,21 @@ h2 {
 }
 
 @media only screen and (max-width: 1099px) {
+    #page-experience .col-1 {
+        grid-template-columns: none;
+    }
+    #page-experience .exp-content li {
+         padding-left: 0;
+        text-align: center;
+    }
+    #page-experience .exp-content ul {
+        padding-left: 0;
+    }
+    .exp-content ul {
+        list-style: none;
+        padding-left: 0;  
+        margin: 0;        
+    }
     .head-main .header-btn {
         gap: 20px;
     }
@@ -725,6 +878,7 @@ h2 {
     .profile-image img {
         width: 430px !important;
     }
+    
 }
 
 @media only screen and (max-width: 1040px) {
@@ -766,6 +920,32 @@ h2 {
     }
     #page-5 > div {
         padding: 40px 40px;
+    }
+    #achievements-page > .col-3 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    }
+
+    #achievements-page .col-info {
+        width: 100% !important;
+        min-width: 0;
+    }
+
+    #achievements-page .p-box {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    #achievements-page .p-box img {
+        width: 100% !important;
+        height: 220px;
+        object-fit: contain;
+    }
+
+    #achievements-page .pad-top {
+        padding-top: 15px;
     }
 }
 @media only screen and (max-width: 899px) {
@@ -820,11 +1000,36 @@ h2 {
     #page-4 img {
         width: 250px !important;
     }
-    
+    #achievements-page {
+    padding: 30px 15px;
+    }
+
+    #achievements-page > .col-3 {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    #achievements-page .p-box {
+        padding: 20px;
+    }
+
+    #achievements-page .p-box img {
+        width: 100% !important;
+        height: 220px;
+        object-fit: contain;
+    }
+
+    #achievements-page h3 {
+        font-size: 22px;
+    }
+
+    #achievements-page p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
 }
 
 @media only screen and (max-width: 734px) {
-
 }
 
 @media only screen and (max-width: 666px) {
@@ -881,7 +1086,31 @@ h2 {
     }
     #page-1 .box, #page-1 .img {
         width: calc(50% - 1 * -230px);
-    }	
+    }
+    #achievements-page {
+    padding: 20px 10px;
+    }
+
+    #achievements-page > .col-3 {
+        gap: 20px;
+    }
+
+    #achievements-page .p-box {
+        padding: 15px;
+    }
+
+    #achievements-page .p-box img {
+        height: 180px;
+    }
+
+    #achievements-page h3 {
+        font-size: 19px;
+    }
+
+    #achievements-page p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
 }
 
 @media only screen and (max-width: 413px) {
