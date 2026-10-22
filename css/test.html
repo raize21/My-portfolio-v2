@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="typewriter"></h1>
+
+<script>
+var i = 0;
+var txt = 'W3Schools Letter Animation'; 
+var speed = 100; /* Speed/duration of the effect in milliseconds */
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("typewriter").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+// Start the animation when the page loads
+window.onload = typeWriter;
+</script>
+
+</body>
+</html>
