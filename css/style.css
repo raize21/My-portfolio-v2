@@ -885,6 +885,9 @@ h2 {
 }
 
 @media only screen and (max-width: 413px) {
+    .profile-image img {
+        width: 400px !important;
+    }
     .profile {
         padding: 50px 40px 6% 40px !important;
     }
