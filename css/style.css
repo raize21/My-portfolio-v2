@@ -800,11 +800,6 @@ h2 {
 }
 
 @media only screen and (max-width: 767px) {
-    .scrolled {
-        background-color: unset !important;
-        box-shadow: unset !important;
-        padding: 35px 0 !important;
-    }
     .profile {
         text-align: center;
         flex-direction: column-reverse;
