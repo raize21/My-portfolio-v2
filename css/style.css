@@ -1108,7 +1108,9 @@ h2 {
     #achievements-page .p-box img {
         height: 180px;
     }
-
+    #achievements-page .p-box:before {
+        display: none;
+    }
     #achievements-page h3 {
         font-size: 19px;
     }
