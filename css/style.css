@@ -395,6 +395,11 @@ header {
     cursor: pointer;
     z-index: 100000;
 }
+#certificate-page .col-2 {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
 
 .lightbox-close:hover {
     color: #00ffff;
