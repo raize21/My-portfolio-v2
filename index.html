@@ -14,9 +14,9 @@
                     <div class="p-title">
                         <p><a href="#">J.A Portfolio</a></p>
                     </div>
-                    <div class="heads">
+
                      <img class="openbtn" id="openbtn" onclick="openNav(); this.style.display='none';" src="asset/image/menu-bar.png" alt="menu bar" style="width: 60px; height: 60px;">
-                    </div>
+
                 </div>
             </div>      
                 <div id="mySidebar" class="header-btn sidebar">
@@ -871,13 +871,13 @@
     <script>
         // Header scroll effect
         window.addEventListener("scroll", function () {
-            const heads = document.querySelector(".heads");
+            const header = document.querySelector("header");
 
-            if (heads) {
+            if (header) {
                 if (window.scrollY > 50) {
-                    heads.classList.add("scrolled");
+                    header.classList.add("scrolled");
                 } else {
-                    heads.classList.remove("scrolled");
+                    header.classList.remove("scrolled");
                 }
             }
         });

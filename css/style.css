@@ -230,7 +230,7 @@ p {
     width: 200px;
     height: auto;
 }
-.heads {
+header {
     position: sticky;
     top: 0;
     left: 0;
@@ -261,7 +261,6 @@ p {
 #main .p-title {
     width: 100%;
     margin: 0 !important;
-    align-content: center;
 }
 #main a {
     transition: 0.3s;
