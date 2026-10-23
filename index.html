@@ -807,19 +807,41 @@
                     </div>     
                     </div>   
         </section>
-        <div id="certificate-page" class="h2-bottom">
-             <h2 class="name wrap">Certificate</h2>
-        </div>
         <section id="page-4" class="wrap">
             <div class="col-2">
                 <div class="img-box">
-                    <img class="img" style="width: 600px; height: 100%;" src="asset/image/cert1.jfif" alt="cert1">
+                    <img
+                        class="img certificate-img"
+                        src="asset/image/cert1.jfif"
+                        alt="Certificate 1"
+                        onclick="openCertificate(this)"
+                    >
                 </div>
-                <div class="img-box">                           
-                    <img class="img" style="width: 600px; height: 100%;" src="asset/image/cert2.jfif" alt="cert1">
+
+                <div class="img-box">
+                    <img
+                        class="img certificate-img"
+                        src="asset/image/cert2.jfif"
+                        alt="Certificate 2"
+                        onclick="openCertificate(this)"
+                    >
                 </div>
             </div>
         </section>
+
+        <!-- Certificate Lightbox -->
+        <div id="certificateLightbox" class="certificate-lightbox"
+            onclick="closeCertificate(event)">
+
+            <button class="lightbox-close"
+                    onclick="closeCertificate()"
+                    aria-label="Close certificate">
+                &times;
+            </button>
+
+            <img id="lightboxImage" src="" alt="Full-size certificate">
+        </div>
+
          <div id="contact" class="h2-bottom">
              <h2 class="name wrap">GET INTOUCH</h2>
         </div>
@@ -841,111 +863,205 @@
                 alt="Back to top"
                 style="cursor: pointer;">
         </div>
-<script>
+    <script>
+        // Header scroll effect
         window.addEventListener("scroll", function () {
-        const header = document.querySelector("header");
-        
-        // If the page is scrolled down more than 50px, add the class. Otherwise, remove it.
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-        });
-</script>
+            const header = document.querySelector("header");
 
-<script>
-            // Get the button
-            let mybutton = document.getElementById("myBtn");
-
-            // When the user scrolls down 20px from the top of the document, show the button
-            window.onscroll = function() { scrollFunction() };
-
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    mybutton.style.display = "block";
+            if (header) {
+                if (window.scrollY > 50) {
+                    header.classList.add("scrolled");
                 } else {
-                    mybutton.style.display = "none";
+                    header.classList.remove("scrolled");
                 }
             }
+        });
 
-            // Function to HIDE the menu button when opening the menu
-            function openNav() {
-                document.querySelector(".openbtn").style.display = "none";
-                // Optional: Add your code to slide open the menu here
+        // Get the back-to-top button
+        const mybutton = document.getElementById("myBtn");
+
+        // Show or hide the back-to-top button while scrolling
+        function scrollFunction() {
+            if (!mybutton) return;
+
+            if (
+                document.body.scrollTop > 20 ||
+                document.documentElement.scrollTop > 20
+            ) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        window.addEventListener("scroll", scrollFunction);
+
+        // Open sidebar
+        function openNav() {
+            const sidebar = document.getElementById("mySidebar");
+            const openbtn = document.getElementById("openbtn");
+
+            if (sidebar) {
+                sidebar.style.width = "250px";
             }
 
-            // Function to SHOW the menu button again when closing the menu
-            function closeNav() {
-                document.querySelector(".openbtn").style.display = "block";
-                // Optional: Add your code to slide close the menu here
+            if (openbtn) {
+                openbtn.style.display = "none";
             }
-            // Back-to-top button
-            function topFunction() {
-                // Clear the current section hash
-                history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
 
-                // Scroll to the top
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+        // Close sidebar
+        function closeNav() {
+            const sidebar = document.getElementById("mySidebar");
+            const openbtn = document.getElementById("openbtn");
 
-                // Highlight Home in the sidebar
-                const links = document.querySelectorAll("#mySidebar .head-btn");
+            if (sidebar) {
+                sidebar.style.width = "0";
+            }
 
-                links.forEach(link => {
+            if (openbtn) {
+                openbtn.style.display = "block";
+            }
+        }
+
+        // Highlight Home in the sidebar
+        function highlightHome() {
+            const links = document.querySelectorAll("#mySidebar .head-btn");
+
+            links.forEach(function (link) {
+                link.classList.remove("active");
+
+                if (link.getAttribute("href") === "#") {
+                    link.classList.add("active");
+                }
+            });
+        }
+
+        // Back-to-top button
+        function topFunction() {
+            // Remove the current section hash
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname + window.location.search
+            );
+
+            // Scroll smoothly to the top
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+            // Highlight Home
+            highlightHome();
+        }
+
+        // Close sidebar when clicking outside
+        document.addEventListener("click", function (event) {
+            const sidebar = document.getElementById("mySidebar");
+            const openbtn = document.getElementById("openbtn");
+
+            if (
+                sidebar &&
+                openbtn &&
+                !sidebar.contains(event.target) &&
+                !openbtn.contains(event.target) &&
+                sidebar.style.width !== "0px" &&
+                sidebar.style.width !== "0"
+            ) {
+                closeNav();
+            }
+        });
+
+        // Sidebar active-link highlighting
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll("#mySidebar .head-btn");
+
+            function setActiveLink() {
+                const currentHash = window.location.hash || "#";
+
+                links.forEach(function (link) {
                     link.classList.remove("active");
 
-                    if (link.getAttribute("href") === "#") {
+                    if (link.getAttribute("href") === currentHash) {
                         link.classList.add("active");
                     }
                 });
             }
 
-            // Close sidebar when clicking outside
-            document.addEventListener("click", function (event) {
-                const sidebar = document.getElementById("mySidebar");
-                const openbtn = document.getElementById("openbtn");
-
-                if (
-                    sidebar &&
-                    openbtn &&
-                    sidebar.style.width !== "0px" &&
-                    !sidebar.contains(event.target) &&
-                    !openbtn.contains(event.target)
-                ) {
-                    closeNav();
-                    openbtn.style.display = "block";
-                }
-            });
-            document.addEventListener("DOMContentLoaded", function () {
-                const links = document.querySelectorAll("#mySidebar .head-btn");
-
-                function setActiveLink() {
-                    const currentHash = window.location.hash || "#";
-
-                    links.forEach(link => {
-                        link.classList.remove("active");
-
-                        if (link.getAttribute("href") === currentHash) {
-                            link.classList.add("active");
-                        }
+            links.forEach(function (link) {
+                link.addEventListener("click", function () {
+                    links.forEach(function (item) {
+                        item.classList.remove("active");
                     });
-                }
 
-                links.forEach(link => {
-                    link.addEventListener("click", function () {
-                        links.forEach(item => item.classList.remove("active"));
-                        this.classList.add("active");
-                    });
+                    this.classList.add("active");
                 });
+            });
 
-                setActiveLink();
+            setActiveLink();
 
-                window.addEventListener("hashchange", setActiveLink);
+            window.addEventListener("hashchange", setActiveLink);
+        });
+
+        // Return to Home whenever the page is refreshed or loaded
+        window.addEventListener("load", function () {
+            // Clear the section hash from the URL
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname + window.location.search
+            );
+
+            // Scroll to the top
+            window.scrollTo(0, 0);
+
+            // Highlight Home
+            highlightHome();
+
+            // Hide the back-to-top button at the top
+            scrollFunction();
+        });
+    </script>
+            
+        <script>
+            function openCertificate(image) {
+                const lightbox = document.getElementById("certificateLightbox");
+                const lightboxImage = document.getElementById("lightboxImage");
+
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+
+                lightbox.style.display = "flex";
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeCertificate(event) {
+                // Close only when clicking the background
+                // or the X button
+                if (
+                    !event ||
+                    event.target.id === "certificateLightbox" ||
+                    event.target.closest(".lightbox-close")
+                ) {
+                    document.getElementById("certificateLightbox").style.display = "none";
+                    document.getElementById("lightboxImage").src = "";
+                    document.body.style.overflow = "";
+                }
+            }
+
+            // Close using the Escape key
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    const lightbox = document.getElementById("certificateLightbox");
+
+                    if (lightbox.style.display === "flex") {
+                        closeCertificate();
+                    }
+                }
             });
         </script>
+
 
 
             
