@@ -262,6 +262,7 @@ header {
 #main .p-title {
     width: 100%;
     margin: 0 !important;
+    align-content: center;
 }
 #main a {
     transition: 0.3s;
