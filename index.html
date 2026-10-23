@@ -868,220 +868,162 @@
                 alt="Back to top"
                 style="cursor: pointer;">
         </div>
-    <script>
-        // Header scroll effect
-        window.addEventListener("scroll", function () {
-            const header = document.querySelector("header");
+<script>
+    // Header scroll effect
+    window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        }
+    });
 
-            if (header) {
-                if (window.scrollY > 50) {
-                    header.classList.add("scrolled");
-                } else {
-                    header.classList.remove("scrolled");
-                }
+    // Get the back-to-top button
+    const mybutton = document.getElementById("myBtn");
+
+    // Show or hide the back-to-top button while scrolling
+    function scrollFunction() {
+        if (!mybutton) return;
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    window.addEventListener("scroll", scrollFunction);
+
+    // Open sidebar (Fixed to include main shift logic and hide openbtn)
+    function openNav() {
+        const sidebar = document.getElementById("mySidebar");
+        const openbtn = document.getElementById("openbtn");
+        const main = document.getElementById("main");
+
+        if (sidebar) sidebar.style.width = "300px";
+        if (main) main.style.marginRight = "195px";
+        if (openbtn) openbtn.style.display = "none";
+    }
+
+    // Close sidebar (Fixed to restore main layout and bring back openbtn)
+    function closeNav() {
+        const sidebar = document.getElementById("mySidebar");
+        const openbtn = document.getElementById("openbtn");
+        const main = document.getElementById("main");
+
+        if (sidebar) sidebar.style.width = "0";
+        if (main) main.style.marginRight = "0";
+        if (openbtn) openbtn.style.display = "block";
+    }
+
+    // Highlight Home in the sidebar
+    function highlightHome() {
+        const links = document.querySelectorAll("#mySidebar .head-btn");
+        links.forEach(function (link) {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#") {
+                link.classList.add("active");
             }
         });
+    }
 
-        // Get the back-to-top button
-        const mybutton = document.getElementById("myBtn");
+    // Back-to-top button
+    function topFunction() {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        highlightHome();
+    }
 
-        // Show or hide the back-to-top button while scrolling
-        function scrollFunction() {
-            if (!mybutton) return;
+    // Close sidebar when clicking outside (Fixed condition bug)
+    document.addEventListener("click", function (event) {
+        const sidebar = document.getElementById("mySidebar");
+        const openbtn = document.getElementById("openbtn");
 
-            if (
-                document.body.scrollTop > 20 ||
-                document.documentElement.scrollTop > 20
-            ) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
+        if (sidebar && openbtn) {
+            // Get current style safely instead of tracking literal string '0px'
+            const currentWidth = sidebar.style.width;
+
+            // If sidebar is visible (not 0 width) and click is outside sidebar and menu button
+            if (currentWidth !== "0px" && currentWidth !== "" && currentWidth !== "0") {
+                if (!sidebar.contains(event.target) && !openbtn.contains(event.target)) {
+                    closeNav();
+                }
             }
         }
+    });
 
-        window.addEventListener("scroll", scrollFunction);
+    // Sidebar active-link highlighting
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("#mySidebar .head-btn");
 
-        // Open sidebar
-        function openNav() {
-            const sidebar = document.getElementById("mySidebar");
-            const openbtn = document.getElementById("openbtn");
-
-            if (sidebar) {
-                sidebar.style.width = "250px";
-            }
-
-            if (openbtn) {
-                openbtn.style.display = "none";
-            }
-        }
-
-        // Close sidebar
-        function closeNav() {
-            const sidebar = document.getElementById("mySidebar");
-            const openbtn = document.getElementById("openbtn");
-
-            if (sidebar) {
-                sidebar.style.width = "0";
-            }
-
-            if (openbtn) {
-                openbtn.style.display = "block";
-            }
-        }
-
-        // Highlight Home in the sidebar
-        function highlightHome() {
-            const links = document.querySelectorAll("#mySidebar .head-btn");
-
+        function setActiveLink() {
+            const currentHash = window.location.hash || "#";
             links.forEach(function (link) {
                 link.classList.remove("active");
-
-                if (link.getAttribute("href") === "#") {
+                if (link.getAttribute("href") === currentHash) {
                     link.classList.add("active");
                 }
             });
         }
 
-        // Back-to-top button
-        function topFunction() {
-            // Remove the current section hash
-            history.replaceState(
-                null,
-                "",
-                window.location.pathname + window.location.search
-            );
-
-            // Scroll smoothly to the top
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-            // Highlight Home
-            highlightHome();
-        }
-
-        // Close sidebar when clicking outside
-        document.addEventListener("click", function (event) {
-            const sidebar = document.getElementById("mySidebar");
-            const openbtn = document.getElementById("openbtn");
-
-            if (
-                sidebar &&
-                openbtn &&
-                !sidebar.contains(event.target) &&
-                !openbtn.contains(event.target) &&
-                sidebar.style.width !== "0px" &&
-                sidebar.style.width !== "0"
-            ) {
-                closeNav();
-            }
-        });
-
-        // Sidebar active-link highlighting
-        document.addEventListener("DOMContentLoaded", function () {
-            const links = document.querySelectorAll("#mySidebar .head-btn");
-
-            function setActiveLink() {
-                const currentHash = window.location.hash || "#";
-
-                links.forEach(function (link) {
-                    link.classList.remove("active");
-
-                    if (link.getAttribute("href") === currentHash) {
-                        link.classList.add("active");
-                    }
+        links.forEach(function (link) {
+            link.addEventListener("click", function () {
+                links.forEach(function (item) {
+                    item.classList.remove("active");
                 });
-            }
-
-            links.forEach(function (link) {
-                link.addEventListener("click", function () {
-                    links.forEach(function (item) {
-                        item.classList.remove("active");
-                    });
-
-                    this.classList.add("active");
-                });
+                this.classList.add("active");
             });
-
-            setActiveLink();
-
-            window.addEventListener("hashchange", setActiveLink);
         });
 
-        // Return to Home whenever the page is refreshed or loaded
-        window.addEventListener("load", function () {
-            // Clear the section hash from the URL
-            history.replaceState(
-                null,
-                "",
-                window.location.pathname + window.location.search
-            );
+        setActiveLink();
+        window.addEventListener("hashchange", setActiveLink);
+    });
 
-            // Scroll to the top
-            window.scrollTo(0, 0);
-
-            // Highlight Home
-            highlightHome();
-
-            // Hide the back-to-top button at the top
-            scrollFunction();
-        });
-        
-    </script>
-            
-        <script>
-            function openCertificate(image) {
-                const lightbox = document.getElementById("certificateLightbox");
-                const lightboxImage = document.getElementById("lightboxImage");
-
-                lightboxImage.src = image.src;
-                lightboxImage.alt = image.alt;
-
-                lightbox.style.display = "flex";
-                document.body.style.overflow = "hidden";
-            }
-
-            function closeCertificate(event) {
-                // Close only when clicking the background
-                // or the X button
-                if (
-                    !event ||
-                    event.target.id === "certificateLightbox" ||
-                    event.target.closest(".lightbox-close")
-                ) {
-                    document.getElementById("certificateLightbox").style.display = "none";
-                    document.getElementById("lightboxImage").src = "";
-                    document.body.style.overflow = "";
-                }
-            }
-
-            // Close using the Escape key
-            document.addEventListener("keydown", function (event) {
-                if (event.key === "Escape") {
-                    const lightbox = document.getElementById("certificateLightbox");
-
-                    if (lightbox.style.display === "flex") {
-                        closeCertificate();
-                    }
-                }
-            });
-        </script>
-
-
-
-            
-    <script>
-        function openNav() {
-        document.getElementById("mySidebar").style.width = "300px";
-        document.getElementById("main").style.marginRight = "195px";
-        }
-
-        function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginRight= "0";
-        }
+    // Return to Home whenever the page is refreshed or loaded
+    window.addEventListener("load", function () {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+        window.scrollTo(0, 0);
+        highlightHome();
+        scrollFunction();
+    });
 </script>
+        
+<script>
+    // Certificate Lightbox logic
+    function openCertificate(image) {
+        const lightbox = document.getElementById("certificateLightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+
+        if(lightboxImage && lightbox) {
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt;
+            lightbox.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+    }
+
+    function closeCertificate(event) {
+        if (!event || event.target.id === "certificateLightbox" || event.target.closest(".lightbox-close")) {
+            const lightbox = document.getElementById("certificateLightbox");
+            const lightboxImage = document.getElementById("lightboxImage");
+            if(lightbox) lightbox.style.display = "none";
+            if(lightboxImage) lightboxImage.src = "";
+            document.body.style.overflow = "";
+        }
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            const lightbox = document.getElementById("certificateLightbox");
+            if (lightbox && lightbox.style.display === "flex") {
+                closeCertificate();
+            }
+        }
+    });
+</script>
+
 <footer class="wrap" style="text-align: center;">
     <p>J.A.SALAZAR</p>
     <p>© 2026 // ALL RIGHTS RESERVED // PHL</p>
