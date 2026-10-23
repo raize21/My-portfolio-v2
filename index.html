@@ -834,9 +834,14 @@
             </div>
         </section>
         <div>
-              <img src="asset/image/top-back.png" onclick="topFunction()" id="myBtn" title="Go to top" alt="Back top top">
+            <img src="asset/image/top-back.png"
+                onclick="topFunction()"
+                id="myBtn"
+                title="Go to top"
+                alt="Back to top"
+                style="cursor: pointer;">
         </div>
-        <script>
+<script>
         window.addEventListener("scroll", function () {
         const header = document.querySelector("header");
         
@@ -847,9 +852,9 @@
             header.classList.remove("scrolled");
         }
         });
-        </script>
+</script>
 
-        <script>
+<script>
             // Get the button
             let mybutton = document.getElementById("myBtn");
 
@@ -875,18 +880,37 @@
                 document.querySelector(".openbtn").style.display = "block";
                 // Optional: Add your code to slide close the menu here
             }
-
-            // When the user clicks on the back-to-top button, scroll to the top of the document
+            // Back-to-top button
             function topFunction() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
+                // Clear the current section hash
+                history.replaceState(null, "", window.location.pathname + window.location.search);
+
+                // Scroll to the top
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+                // Highlight Home in the sidebar
+                const links = document.querySelectorAll("#mySidebar .head-btn");
+
+                links.forEach(link => {
+                    link.classList.remove("active");
+
+                    if (link.getAttribute("href") === "#") {
+                        link.classList.add("active");
+                    }
+                });
             }
+
+            // Close sidebar when clicking outside
             document.addEventListener("click", function (event) {
                 const sidebar = document.getElementById("mySidebar");
                 const openbtn = document.getElementById("openbtn");
 
                 if (
                     sidebar &&
+                    openbtn &&
                     sidebar.style.width !== "0px" &&
                     !sidebar.contains(event.target) &&
                     !openbtn.contains(event.target)
@@ -896,7 +920,7 @@
                 }
             });
             document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll("#mySidebar .head-btn");
+                const links = document.querySelectorAll("#mySidebar .head-btn");
 
                 function setActiveLink() {
                     const currentHash = window.location.hash || "#";
