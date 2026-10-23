@@ -1027,21 +1027,7 @@
             // Hide the back-to-top button at the top
             scrollFunction();
         });
-                    // Close the sidebar when clicking anywhere outside of it
-            document.addEventListener("click", function(event) {
-                let sidebar = document.getElementById("mySidenav") || document.getElementById("mySidebar") || document.querySelector(".sidebar");
-                let menuBtn = document.getElementById("openbtn") || document.querySelector(".openbtn");
-
-                // Check if the sidebar is currently open/visible
-                if (sidebar && (sidebar.style.width === "250px" || sidebar.style.display === "block")) {
-                    
-                    // If the click happened OUTSIDE both the sidebar and the menu button, close it
-                    if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
-                        closeNav();
-                        if (menuBtn) menuBtn.style.display = "block";
-                    }
-                }
-            });
+        
     </script>
             
         <script>
