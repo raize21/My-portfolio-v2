@@ -1279,7 +1279,9 @@ h2 {
     }
 
     #achievements-page .p-box img {
-        height: 180px;
+        object-fit: cover;
+        width: 100% !important;
+        height: 260px !important;
     }
     #achievements-page .p-box:before {
         display: none;
