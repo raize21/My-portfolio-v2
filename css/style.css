@@ -1162,6 +1162,11 @@ h2 {
 }
 
 @media only screen and (max-width: 479px) { 
+    .p-box img, .p-box iframe, .p-box-1 img, .p-box-1 iframe {
+        width: 100% !important;
+        height: 260px !important;
+        object-fit: contain;
+    }
     #page-1 .img {
         width: calc(50% - 1 * -63px);
     }
