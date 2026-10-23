@@ -1283,8 +1283,18 @@ h2 {
         width: 100% !important;
         height: 260px !important;
     }
-    #achievements-page .p-box:before {
-        display: none;
+    #achievements-page .col-3 .g-border:before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 6px;
+        left: 6px;
+        bottom: 6px;
+        right: 6px;
+        border: 1px solid rgba(122, 122, 122, .8);
+        pointer-events: none;
     }
     #achievements-page h3 {
         font-size: 19px;
