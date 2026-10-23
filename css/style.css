@@ -1175,6 +1175,9 @@ h2 {
     #page-1 .box, #page-1 .img {
         width: calc(50% - 1 * -230px);
     }
+    #page-3 h3 {
+        font-size: 20px;
+    }
     #achievements-page {
     padding: 20px 10px;
     }
@@ -1200,6 +1203,9 @@ h2 {
     #achievements-page p {
         font-size: 14px;
         line-height: 1.6;
+    }
+    #page-3 .p-box, #page-3 .p-box-1 p {
+        font-size: 15px;
     }
 }
 
