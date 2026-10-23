@@ -14,7 +14,7 @@
                     <div class="p-title">
                         <p><a href="#">J.A Portfolio</a></p>
                     </div>
-                    <div class="head">
+                    <div class="heads">
                      <img class="openbtn" id="openbtn" onclick="openNav(); this.style.display='none';" src="asset/image/menu-bar.png" alt="menu bar" style="width: 60px; height: 60px;">
                     </div>
                 </div>
@@ -871,13 +871,13 @@
     <script>
         // Header scroll effect
         window.addEventListener("scroll", function () {
-            const head = document.querySelector("head");
+            const heads = document.querySelector("heads");
 
-            if (head) {
+            if (heads) {
                 if (window.scrollY > 50) {
-                    head.classList.add("scrolled");
+                    heads.classList.add("scrolled");
                 } else {
-                    head.classList.remove("scrolled");
+                    heads.classList.remove("scrolled");
                 }
             }
         });
