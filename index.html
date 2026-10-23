@@ -14,7 +14,9 @@
                     <div class="p-title">
                         <p><a href="#">J.A Portfolio</a></p>
                     </div>
-                <img class="openbtn" id="openbtn" onclick="openNav(); this.style.display='none';" src="asset/image/menu-bar.png" alt="menu bar" style="width: 60px; height: 60px;">
+                    <div id="header-menu">
+                     <img class="openbtn" id="openbtn" onclick="openNav(); this.style.display='none';" src="asset/image/menu-bar.png" alt="menu bar" style="width: 60px; height: 60px;">
+                </div>
                 </div>
             </div>      
                 <div id="mySidebar" class="header-btn sidebar">
@@ -869,7 +871,7 @@
     <script>
         // Header scroll effect
         window.addEventListener("scroll", function () {
-            const header = document.querySelector("header");
+            const header = document.querySelector("header-menu");
 
             if (header) {
                 if (window.scrollY > 50) {
