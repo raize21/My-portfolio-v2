@@ -230,7 +230,7 @@ p {
     width: 200px;
     height: auto;
 }
-#head-menu {
+header {
     position: sticky;
     top: 0;
     left: 0;
