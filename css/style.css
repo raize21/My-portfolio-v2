@@ -1027,11 +1027,6 @@ h2 {
     }
 }
 @media only screen and (max-width: 899px) {
-    .head-btn:nth-child(1),
-    .head-btn:nth-child(2),
-    .head-btn:nth-child(3) {
-        display: none;
-    }
     .profile-image img {
         width: 320px !important;
     }
