@@ -230,11 +230,10 @@ p {
     width: 200px;
     height: auto;
 }
-header {
+.head {
     position: sticky;
     top: 0;
     left: 0;
-    width: 100%;
     z-index: 9999;
     transition: all 0.3s ease-in-out;
 }
