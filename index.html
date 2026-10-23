@@ -895,6 +895,32 @@
                     openbtn.style.display = "block";
                 }
             });
+            document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll("#mySidebar .head-btn");
+
+                function setActiveLink() {
+                    const currentHash = window.location.hash || "#";
+
+                    links.forEach(link => {
+                        link.classList.remove("active");
+
+                        if (link.getAttribute("href") === currentHash) {
+                            link.classList.add("active");
+                        }
+                    });
+                }
+
+                links.forEach(link => {
+                    link.addEventListener("click", function () {
+                        links.forEach(item => item.classList.remove("active"));
+                        this.classList.add("active");
+                    });
+                });
+
+                setActiveLink();
+
+                window.addEventListener("hashchange", setActiveLink);
+            });
         </script>
 
 

@@ -337,6 +337,18 @@ header {
     padding-bottom: 20px;
     text-align: center;
 }
+/* Hover effect */
+.sidebar .head-btn:hover {
+    background-color: #333;
+    color: #00ffff;
+}
+
+/* Active page button */
+.sidebar .head-btn.active {
+    background-color: #00ffff;
+    color: #000;
+    font-weight: bold;
+}
 /* for back top button */
 #myBtn {
     display: none;
