@@ -1298,11 +1298,13 @@ h2 {
     }
     #achievements-page h3 {
         font-size: 19px;
+        margin-bottom: 15px;
     }
 
     #achievements-page p {
         font-size: 14px;
         line-height: 1.6;
+        margin: 0 !important;
     }
     #page-3 .p-box, #page-3 .p-box-1 p {
         font-size: 15px;
