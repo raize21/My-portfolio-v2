@@ -10,14 +10,30 @@
         <header class="head-main">
             <div class="header-id wrap">
                 <div class="header-title">
-                <p><a href="#">J.A Portfolio</a></p>
+                 <div id="main">
+                    <div class="p-title">
+                        <p><a href="#">J.A Portfolio</a></p>
+                    </div>
+                <img class="openbtn" id="openbtn" onclick="openNav(); this.style.display='none';" src="asset/image/menu-bar.png" alt="menu bar" style="width: 60px; height: 60px;">
                 </div>
-        <div class="header-btn">
-            <a class="head-btn" href="#page-1">About Me</a>
-            <a class="head-btn" href="#page-2">My TechStack</a>
-            <a class="head-btn" href="#page-3">Projects</a>
-            <a class="head-btn" href="#contact">Contact Me</a>
-        </div>
+            </div>      
+                <div id="mySidebar" class="header-btn sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">x</a>
+                    <a class="head-btn" href="#" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">Home</a>
+                    <a class="head-btn" href="#page-1" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">About Me</a>
+                    <a class="head-btn" href="#achievements-page" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">My Achievements</a>
+                    <a class="head-btn" href="#page-2" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">My TechStack</a>
+                    <a class="head-btn" href="#page-experience" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">Work Experience</a>
+                    <a class="head-btn" href="#education-page" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">Education</a>
+                    <a class="head-btn" href="#page-3" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">My Personal Projects</a>
+                    <a class="head-btn" href="#client-project" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">Client Projects</a>
+                    <a class="head-btn" href="#certificate-page" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">Certificate</a>
+                    <a class="head-btn" href="#contact" onclick="closeNav(); document.getElementById('openbtn').style.display='block';">Contact Me</a>
+                    <div class="sidebar-content">
+                    <p style="font-size: 14px;">J.A.SALAZAR</p>
+                    <p style="font-size: 14px;">© 2026 // ALL RIGHTS RESERVED // PHL</p>
+                    </div>
+                </div>
         </div>
     </header>
      <video autoplay loop muted playsinline class="body-bg-video">
@@ -391,7 +407,7 @@
                         </div>
                         <div>
                             </div>
-                            <h2 class="name">Client Projects</h2>
+                            <h2 id="client-project" class="name">Client Projects</h2>
                         </div>
                          <div class="col-3">
                         <div class="col-info cols-7">  
@@ -791,7 +807,7 @@
                     </div>     
                     </div>   
         </section>
-        <div class="h2-bottom">
+        <div id="certificate-page" class="h2-bottom">
              <h2 class="name wrap">Certificate</h2>
         </div>
         <section id="page-4" class="wrap">
@@ -817,6 +833,9 @@
                 <a href="tel:+639661920738">+63 966 192 0738</a>
             </div>
         </section>
+        <div>
+              <img src="asset/image/top-back.png" onclick="topFunction()" id="myBtn" title="Go to top" alt="Back top top">
+        </div>
         <script>
         window.addEventListener("scroll", function () {
         const header = document.querySelector("header");
@@ -829,6 +848,68 @@
         }
         });
         </script>
+
+        <script>
+            // Get the button
+            let mybutton = document.getElementById("myBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            }
+
+            // Function to HIDE the menu button when opening the menu
+            function openNav() {
+                document.querySelector(".openbtn").style.display = "none";
+                // Optional: Add your code to slide open the menu here
+            }
+
+            // Function to SHOW the menu button again when closing the menu
+            function closeNav() {
+                document.querySelector(".openbtn").style.display = "block";
+                // Optional: Add your code to slide close the menu here
+            }
+
+            // When the user clicks on the back-to-top button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            document.addEventListener("click", function (event) {
+                const sidebar = document.getElementById("mySidebar");
+                const openbtn = document.getElementById("openbtn");
+
+                if (
+                    sidebar &&
+                    sidebar.style.width !== "0px" &&
+                    !sidebar.contains(event.target) &&
+                    !openbtn.contains(event.target)
+                ) {
+                    closeNav();
+                    openbtn.style.display = "block";
+                }
+            });
+        </script>
+
+
+            
+    <script>
+        function openNav() {
+        document.getElementById("mySidebar").style.width = "280px";
+        document.getElementById("main").style.marginRight = "195px";
+        }
+
+        function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginRight= "0";
+        }
+</script>
 <footer class="wrap" style="text-align: center;">
     <p>J.A.SALAZAR</p>
     <p>© 2026 // ALL RIGHTS RESERVED // PHL</p>
