@@ -15,8 +15,15 @@
                         <p><a href="#">J.A Portfolio</a></p>
                     </div>
                     <div class="header-menu">
-                     <img class="openbtn" id="openbtn" onclick="openNav(); this.style.display='none';" src="asset/image/menu-bar.png" alt="menu bar" style="width: 60px; height: 60px;">
-                </div>
+                        <img
+                            class="openbtn"
+                            id="openbtn"
+                            onclick="openNav(); this.style.display='none';"
+                            src="asset/image/menu-bar.png"
+                            alt="Menu bar"
+                            style="width: 60px; height: 60px;"
+                        >
+                    </div>
                 </div>
             </div>      
                 <div id="mySidebar" class="header-btn sidebar">
@@ -869,18 +876,18 @@
                 style="cursor: pointer;">
         </div>
     <script>
-        // Header scroll effect
-        window.addEventListener("scroll", function () {
-            const header = document.querySelector(".header-menu");
+            // Header scroll effect
+            window.addEventListener("scroll", function () {
+                const headerMenu = document.querySelector(".header-menu");
 
-            if (header) {
-                if (window.scrollY > 50) {
-                    header.classList.add("scrolled");
-                } else {
-                    header.classList.remove("scrolled");
+                if (headerMenu) {
+                    if (window.scrollY > 50) {
+                        headerMenu.classList.add("scrolled");
+                    } else {
+                        headerMenu.classList.remove("scrolled");
+                    }
                 }
-            }
-        });
+            });
 
         // Get the back-to-top button
         const mybutton = document.getElementById("myBtn");
